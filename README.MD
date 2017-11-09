@@ -23,14 +23,14 @@ Table: **articles** -- 6 columns, 8 rows
 Table: **authors** -- 3 columns, 4 rows
 
 | name    | bio     | id |
-| :-------| :-------|
-| text    | text    | integer
+| :-------| :-------| :------- |
+| text    | text    | integer |
 
 Table: **log** -- 6 columns, 1,677,735 rows
 
 | path   | ip    | method | status | time | id |
-| :------| :-----|
-| text   | inet  | text   | text   | timestamp with timezone | integer
+| :------| :-----| :-----|:-----|:-----|:-----|
+| text   | inet  | text   | text   | timestamp with timezone | integer |
 
 
 ## Getting started
