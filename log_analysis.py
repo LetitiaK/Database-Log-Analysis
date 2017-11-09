@@ -5,10 +5,9 @@
 import psycopg2
 
 # Connect to the database
-DATABASE = "newspaper"
-conn = psycopg2.connect(DATABASE)
+conn = psycopg2.connect("dbname=news")
 cur = conn.cursor()
-cur.execute("SELECT * FROM article_views;")
+cur.execute("SELECT * FROM article_views LIMIT 3;")
 results = cur.fetchall()
 print(results)
 cur.close()
@@ -21,8 +20,7 @@ conn.close()
 # FROM (SELECT path, title FROM articles JOIN log ON
 # path LIKE '%' || slug || '%') AS sub
 # GROUP BY title
-# ORDER BY views DESC
-# LIMIT 3;
+# ORDER BY views DESC;
 
 # SELECT *
 # FROM article_views;
