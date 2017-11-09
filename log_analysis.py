@@ -4,9 +4,11 @@
 
 import psycopg2
 
-# What are the most popular three articles of all time?
+# Connect to database
 conn = psycopg2.connect("dbname=news")
 cur = conn.cursor()
+
+# What are the most popular three articles of all time?
 cur.execute("SELECT * FROM article_views LIMIT 3;")
 results1 = cur.fetchall()
 print(results1)
@@ -17,12 +19,16 @@ cur.execute("""SELECT name, sum(views) as views FROM article_views, name_title
             ORDER BY views DESC;""")
 results2 = cur.fetchall()
 print(results2)
+
+# On which days did more than 1% of requests lead to errors?
 cur.execute("""SELECT day, percent
             FROM (SELECT day, errors/cast(ok as float)*100
             AS percent FROM status) AS sub
             WHERE percent > 1;""")
 results3 = cur.fetchall()
 print(results3)
+
+# Close connection to database
 cur.close()
 conn.close()
 
