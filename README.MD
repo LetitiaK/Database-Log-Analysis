@@ -16,9 +16,9 @@ The database was provided by [Udacity](www.udacity.com) and was meant to represe
 
 Table: **articles** -- 6 columns, 8 rows
 
-| author     | title   | slug | lead | body | time | id|
-| :----------| :-------|
-| integer    | text    | text | text | text | timestamp with timezone | integer
+| author   | title  | slug   | lead  | body  | time | id|
+| :------- | :----- |:------ |:----- |:----- |:-----| :----- |
+| integer  | text   | text   | text  | text  | timestamp with timezone | integer |
 
 Table: **authors** -- 3 columns, 4 rows
 
