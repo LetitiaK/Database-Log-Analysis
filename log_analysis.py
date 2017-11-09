@@ -1,3 +1,5 @@
+# This Python code uses the news database and psycopg2 to answer the
+# following three questions:
 # What are the most popular three articles of all time?
 # Who are the most popular article authors of all time?
 # On which days did more than 1% of requests lead to errors?
@@ -41,38 +43,3 @@ for item in results3:
 # Close connection to database
 cur.close()
 conn.close()
-
-# VIEW for the most popular three articles
-
-# CREATE VIEW article_views AS
-# SELECT title, count(*) as views
-# FROM (SELECT path, title FROM articles JOIN log ON
-# path LIKE '%' || slug || '%') AS sub
-# GROUP BY title
-# ORDER BY views DESC;
-
-# VIEW for the most popular authors
-
-# CREATE VIEW name_title AS
-# SELECT name, title
-# FROM articles, authors
-# WHERE author = authors.id
-
-# VIEWS for the error rates
-
-# CREATE VIEW errors AS
-# SELECT date_trunc('day', time) AS day, count(*) as errors
-# FROM log
-# WHERE status != '200 OK'
-# GROUP BY day;
-
-# CREATE VIEW ok AS
-# SELECT date_trunc('day', time) AS day, count(*) as ok
-# FROM log
-# WHERE status = '200 OK'
-# GROUP BY day;
-
-# CREATE VIEW status AS
-# SELECT ok.day, ok, errors
-# FROM errors, ok
-# WHERE ok.day = errors.day;
