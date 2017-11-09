@@ -9,7 +9,7 @@ This is the third project of the [Udacity](www.udacity.com) Nanodegree Program "
 ## Content
 
 + **log_analysis.py**: This file contains the python source code to run the analysis using psycopg2
-+ **results.txt**: This is output that is created by log_analysis.py
++ **results.txt**: This is the output that is created by log_analysis.py
 + **newsdata.sql**: The database data that was used for this project (*This file was provided by [Udacity](www.udacity.com)*).
 
 
