@@ -4,16 +4,19 @@
 
 import psycopg2
 
-# Connect to the database
+# What are the most popular three articles of all time?
 conn = psycopg2.connect("dbname=news")
 cur = conn.cursor()
 cur.execute("SELECT * FROM article_views LIMIT 3;")
-results = cur.fetchall()
-print(results)
+results1 = cur.fetchall()
+print(results1)
+cur.execute("""SELECT name, sum(views) as views FROM article_views, name_title
+            WHERE article_views.title=name_title.title GROUP BY name
+            ORDER BY views DESC;""")
+results2 = cur.fetchall()
+print(results2)
 cur.close()
 conn.close()
-
-# What are the most popular three articles of all time?
 
 # CREATE VIEW article_views AS
 # SELECT title, count(*) as views
@@ -21,9 +24,6 @@ conn.close()
 # path LIKE '%' || slug || '%') AS sub
 # GROUP BY title
 # ORDER BY views DESC;
-
-# SELECT *
-# FROM article_views;
 
 # Who are the most popular article authors of all time?
 
