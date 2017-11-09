@@ -10,13 +10,23 @@ cur = conn.cursor()
 cur.execute("SELECT * FROM article_views LIMIT 3;")
 results1 = cur.fetchall()
 print(results1)
+
+# Who are the most popular article authors of all time?
 cur.execute("""SELECT name, sum(views) as views FROM article_views, name_title
             WHERE article_views.title=name_title.title GROUP BY name
             ORDER BY views DESC;""")
 results2 = cur.fetchall()
 print(results2)
+cur.execute("""SELECT day, percent
+            FROM (SELECT day, errors/cast(ok as float)*100
+            AS percent FROM status) AS sub
+            WHERE percent > 1;""")
+results3 = cur.fetchall()
+print(results3)
 cur.close()
 conn.close()
+
+# VIEW for the most popular three articles
 
 # CREATE VIEW article_views AS
 # SELECT title, count(*) as views
@@ -25,20 +35,14 @@ conn.close()
 # GROUP BY title
 # ORDER BY views DESC;
 
-# Who are the most popular article authors of all time?
+# VIEW for the most popular authors
 
 # CREATE VIEW name_title AS
 # SELECT name, title
 # FROM articles, authors
 # WHERE author = authors.id
 
-# SELECT name, sum(views) as views
-# FROM article_views, name_title
-# WHERE article_views.title = name_title.title
-# GROUP BY name
-# ORDER BY views DESC;
-
-# On which days did more than 1% of requests lead to errors?
+# VIEWS for the error rates
 
 # CREATE VIEW errors AS
 # SELECT date_trunc('day', time) AS day, count(*) as errors
@@ -56,7 +60,3 @@ conn.close()
 # SELECT ok.day, ok, errors
 # FROM errors, ok
 # WHERE ok.day = errors.day;
-
-# SELECT day, percent
-# FROM (SELECT day, errors/cast(ok as float)*100 AS percent FROM status) AS sub
-# WHERE percent > 1;
