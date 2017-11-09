@@ -1,6 +1,6 @@
 # Log Analysis
 
-This is the third project of the [Udacity](www.udacity.com) Nanodegree Program "Full Stack Web Developer". This code is a reporting tool that summarizes data from a large newspaper website database using Python and PostgreSQL. In particular, the following three questions are answered:
+This is the third project of the [Udacity](www.udacity.com) Nanodegree Program "Full Stack Web Developer". This code is a reporting tool that summarizes data from a large newspaper website database (which was provided by [Udacity](www.udacity.com)) using Python and PostgreSQL. In particular, the following three questions are answered:
 
 1. What are the most popular three articles of all time?
 2. Who are the most popular article authors of all time?
@@ -8,9 +8,29 @@ This is the third project of the [Udacity](www.udacity.com) Nanodegree Program "
 
 ## Content
 
-+ **log_analysis.py**: This file contains the python source code to run the analysis using psycopg2
++ **log_analysis.py**: This file contains the python source code
 + **results.txt**: This is the output that is created by log_analysis.py
-+ **newsdata.sql**: The database data that was used for this project (*This file was provided by [Udacity](www.udacity.com)*).
+
+## The database
+The database was provided by [Udacity](www.udacity.com) and was meant to represent the database of a newspaper website. It was structured as follows:
+
+Table: **articles** -- 6 columns, 8 rows
+
+| author     | title   | slug | lead | body | time | id|
+| :----------| :-------|
+| integer    | text    | text | text | text | timestamp with timezone | integer
+
+Table: **authors** -- 3 columns, 4 rows
+
+| name    | bio     | id |
+| :-------| :-------|
+| text    | text    | integer
+
+Table: **log** -- 6 columns, 1,677,735 rows
+
+| path   | ip    | method | status | time | id |
+| :------| :-----|
+| text   | inet  | text   | text   | timestamp with timezone | integer
 
 
 ## Getting started
