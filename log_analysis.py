@@ -30,7 +30,8 @@ for item in results2:
 # On which days did more than 1% of requests lead to errors?
 result_file.write("\n Days with more than 1% error rate: \n")
 cur.execute("""SELECT day, percent
-            FROM (SELECT day, errors/cast(ok as float)*100
+            FROM
+            (SELECT day, ROUND(CAST(errors/CAST(ok AS FLOAT)*100 AS NUMERIC),2)
             AS percent FROM status) AS sub
             WHERE percent > 1;""")
 results3 = cur.fetchall()
