@@ -76,7 +76,7 @@ ORDER BY views DESC;
 CREATE VIEW name_title AS
 SELECT name, title
 FROM articles, authors
-WHERE author = authors.id
+WHERE author = authors.id;
 ```
 ### Views for the error rates
 ```
