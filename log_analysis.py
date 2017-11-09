@@ -8,17 +8,22 @@ import psycopg2
 conn = psycopg2.connect("dbname=news")
 cur = conn.cursor()
 
+# Create output file
+result_file = open("results.txt", "w")
+
 # What are the most popular three articles of all time?
 cur.execute("SELECT * FROM article_views LIMIT 3;")
 results1 = cur.fetchall()
-print(results1)
+for item in results1:
+    result_file.write("%s \n" % str(item))
 
 # Who are the most popular article authors of all time?
 cur.execute("""SELECT name, sum(views) as views FROM article_views, name_title
             WHERE article_views.title=name_title.title GROUP BY name
             ORDER BY views DESC;""")
 results2 = cur.fetchall()
-print(results2)
+for item in results2:
+    result_file.write("%s \n" % str(item))
 
 # On which days did more than 1% of requests lead to errors?
 cur.execute("""SELECT day, percent
@@ -26,7 +31,8 @@ cur.execute("""SELECT day, percent
             AS percent FROM status) AS sub
             WHERE percent > 1;""")
 results3 = cur.fetchall()
-print(results3)
+for item in results3:
+    result_file.write("%s \n" % str(item))
 
 # Close connection to database
 cur.close()
