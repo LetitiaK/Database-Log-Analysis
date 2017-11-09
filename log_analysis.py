@@ -12,12 +12,14 @@ cur = conn.cursor()
 result_file = open("results.txt", "w")
 
 # What are the most popular three articles of all time?
+result_file.write("\n The three most popular articles of all time: \n")
 cur.execute("SELECT * FROM article_views LIMIT 3;")
 results1 = cur.fetchall()
 for item in results1:
     result_file.write("%s \n" % str(item))
 
 # Who are the most popular article authors of all time?
+result_file.write("\n The most popular authors of all time: \n")
 cur.execute("""SELECT name, sum(views) as views FROM article_views, name_title
             WHERE article_views.title=name_title.title GROUP BY name
             ORDER BY views DESC;""")
@@ -26,6 +28,7 @@ for item in results2:
     result_file.write("%s \n" % str(item))
 
 # On which days did more than 1% of requests lead to errors?
+result_file.write("\n Days with more than 1% error rate: \n")
 cur.execute("""SELECT day, percent
             FROM (SELECT day, errors/cast(ok as float)*100
             AS percent FROM status) AS sub
