@@ -96,7 +96,7 @@ GROUP BY day;
 ```
 ```
 CREATE VIEW status AS
-SELECT ok.day, ok, errors
+SELECT to_char(ok.day, 'FMMonth FMDD, YYYY') AS day, ok, errors
 FROM errors, ok
 WHERE ok.day = errors.day;
 ```
