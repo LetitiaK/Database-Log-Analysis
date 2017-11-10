@@ -66,10 +66,9 @@ In this project several views were created in order to solve the questions. In t
 ### View for the most popular three articles
 ```
 CREATE VIEW article_views AS
-SELECT title, count(*) as views
-FROM (SELECT path, title FROM articles JOIN log ON
-path LIKE '%' || slug || '%') AS sub
-GROUP BY title
+SELECT article.title, count(*) as views
+FROM articles JOIN log ON log.path = '/article/' || articles.slug
+GROUP BY article.title
 ORDER BY views DESC;
 ```
 
