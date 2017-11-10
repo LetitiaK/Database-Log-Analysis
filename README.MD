@@ -37,8 +37,10 @@ Table: **log** -- 6 columns, 1,677,735 rows
 *Please note: This code requires a working Python installation as well as a working PostgreSQL installation. The Python version used for this project is 2.7.12, which can be found [here](https://www.python.org/downloads/) and the PostgreSQL version used for this project is 9.5.9, which can be found [here](https://www.postgresql.org/download/).*
 
 1. Download all files and save them within the same folder
-2. Create the views for the database (see below!)
-3. Chose one of the two possibilities described below to run the code
+2. Download the database from [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+3. Load the data into your local database with `psql -d news -f newsdata.sql`
+4. Create the views for the database (see below!)
+5. Chose one of the two possibilities described below to run the code
 
 ### Command line
 
