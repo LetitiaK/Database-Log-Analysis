@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # This Python code uses the news database and psycopg2 to answer the
 # following three questions:
 # What are the most popular three articles of all time?
