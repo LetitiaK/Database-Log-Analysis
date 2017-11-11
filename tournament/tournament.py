@@ -18,7 +18,7 @@ def connect(database_name="tournament"):
 def deleteMatches():
     """Remove all the match records from the database."""
     db, cur = connect()
-    query = "DELETE FROM matches"
+    query = "DELETE FROM matches;"
     cur.execute(query)
     cur.close()
     db.close()
@@ -27,13 +27,20 @@ def deleteMatches():
 def deletePlayers():
     """Remove all the player records from the database."""
     db, cur = connect()
-    query = "DELETE FROM players"
+    query = "DELETE FROM players;"
     cur.execute(query)
     cur.close()
     db.close()
 
+
 def countPlayers():
     """Returns the number of players currently registered."""
+    db, cur = connect()
+    query = "SELECT count(*) FROM players;"
+    result = cur.fetchall()
+    return result
+    cur.close()
+    db.close()
 
 
 def registerPlayer(name):
