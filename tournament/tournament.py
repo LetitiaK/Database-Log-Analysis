@@ -39,7 +39,7 @@ def countPlayers():
     query = "SELECT count(*) FROM players;"
     cur.execute(query)
     result = cur.fetchall()
-    return result
+    return result[0][0]
     cur.close()
     db.close()
 
