@@ -20,6 +20,7 @@ def deleteMatches():
     db, cur = connect()
     query = "DELETE FROM matches;"
     cur.execute(query)
+    db.commit()
     cur.close()
     db.close()
 
@@ -29,6 +30,7 @@ def deletePlayers():
     db, cur = connect()
     query = "DELETE FROM players;"
     cur.execute(query)
+    db.commit()
     cur.close()
     db.close()
 
@@ -39,6 +41,7 @@ def countPlayers():
     query = "SELECT count(*) FROM players;"
     cur.execute(query)
     result = cur.fetchall()
+    print(result[0][0])
     return result[0][0]
     cur.close()
     db.close()
@@ -54,9 +57,9 @@ def registerPlayer(name):
       name: the player's full name (need not be unique).
     """
     db, cur = connect()
-    query = "INSERT INTO players (name) VALUES (\'%s\');" % name
-    print(query)
+    query = "INSERT INTO players(name) VALUES (\'%s\');" % name
     cur.execute(query)
+    db.commit()
     cur.close()
     db.close()
 
