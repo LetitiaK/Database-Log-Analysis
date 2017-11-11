@@ -54,7 +54,8 @@ def registerPlayer(name):
       name: the player's full name (need not be unique).
     """
     db, cur = connect()
-    query = "INSERT INTO players (name) VALUES %s" % name
+    query = "INSERT INTO players (name) VALUES (\'%s\');" % name
+    print(query)
     cur.execute(query)
     cur.close()
     db.close()
