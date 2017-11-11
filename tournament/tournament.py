@@ -41,7 +41,6 @@ def countPlayers():
     query = "SELECT count(*) FROM players;"
     cur.execute(query)
     result = cur.fetchall()
-    print(result[0][0])
     return result[0][0]
     cur.close()
     db.close()
@@ -57,8 +56,8 @@ def registerPlayer(name):
       name: the player's full name (need not be unique).
     """
     db, cur = connect()
-    query = "INSERT INTO players(name) VALUES (\'%s\');" % name
-    cur.execute(query)
+    query = "INSERT INTO players(name) VALUES (%s);"
+    cur.execute(query, (name,))
     db.commit()
     cur.close()
     db.close()
@@ -77,6 +76,15 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
+    db, cur = connect()
+    query = """SELECT matches_overview.id, matches_overview.name, matches,
+            wins FROM matches_overview LEFT JOIN wins_overview
+            ON matches_overview.id = wins_overview.id"""
+    cur.execute(query)
+    result = cur.fetchall()
+    return result
+    cur.close()
+    db.close()
 
 
 def reportMatch(winner, loser):
